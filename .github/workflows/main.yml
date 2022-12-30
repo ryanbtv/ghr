@@ -16,10 +16,9 @@ env:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    container: ghcr.io/catthehacker/ubuntu:act-latest
     permissions:
-      contents: read
       packages: write
 
     steps:
@@ -60,5 +59,3 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max

@@ -1,9 +1,10 @@
-FROM mcr.microsoft.com/powershell:lts-debian-11
+FROM ghcr.io/catthehacker/ubuntu:pwsh-latest
 
 WORKDIR /workdir
 COPY . ./
 
-# Install git
+# Install Ansible
 RUN \
-    apt-get update \
-    && apt-get install -y git openssh-client
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
+    && python3 get-pip.py \
+    && python3 -m pip install ansible
