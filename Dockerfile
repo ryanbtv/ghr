@@ -1,4 +1,4 @@
-FROM ghcr.io/catthehacker/ubuntu:pwsh-latest
+FROM catthehacker/ubuntu:pwsh-latest
 
 WORKDIR /workdir
 COPY . ./
