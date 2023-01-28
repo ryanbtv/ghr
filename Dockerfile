@@ -3,8 +3,10 @@ FROM catthehacker/ubuntu:pwsh-latest
 WORKDIR /workdir
 COPY . ./
 
+RUN apt-get update && apt-get upgrade
+
 # Install Ansible & tool(s) used by ansible
-RUN curl -vvv https://bootstrap.pypa.io/get-pip.py -o get-pip.py 
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py 
 RUN python3 get-pip.py 
 RUN python3 -m pip install ansible
 RUN python3 -m pip install jmespath
