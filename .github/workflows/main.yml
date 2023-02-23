@@ -8,7 +8,6 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   
-
 jobs:
   build:
     runs-on: self-hosted
@@ -19,6 +18,10 @@ jobs:
         include:
           - dockerfile: ./actions-runner-containers/ssh-agent.Dockerfile
             image: ghcr.io/fireflylabs-ai/ssh-agent
+          - dockerfile: ./actions-runner-containers/ansible.Dockerfile
+            image: ghcr.io/fireflylabs-ai/ansible
+          - dockerfile: ./actions-runner-containers/curl.Dockerfile
+            image: ghcr.io/fireflylabs-ai/curl
     permissions:
       contents: read
       packages: write
@@ -62,6 +65,6 @@ jobs:
           context: .
           file: ${{ matrix.dockerfile }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
